@@ -9,7 +9,7 @@ st.set_page_config(page_title="E-Commerce Data Analysis", layout="wide")
 # ---- Load Data ----
 @st.cache_data
 def load_data():
-    data = pd.read_csv("D:\\ATHARV\\CODING\\Ecommerce_Delivery_Analytics_New.csv")
+    data = pd.read_csv("Ecommerce_Delivery_Analytics_New.csv")
     data['Polarity'] = data['Customer Feedback'].apply(lambda x: TextBlob(str(x)).sentiment.polarity)
     data['Review Type'] = data['Polarity'].apply(lambda x: 'Positive' if x > 0 else 'Negative' if x < 0 else 'Neutral')
     data['Delivery Status'] = data['Delivery Time (Minutes)'].apply(
@@ -152,3 +152,4 @@ elif section == "⚠️ Data Issues":
     else:
         st.error(f"⚠️ Found {len(invalid_rows)} invalid feedback entries.")
         st.dataframe(invalid_rows)
+
